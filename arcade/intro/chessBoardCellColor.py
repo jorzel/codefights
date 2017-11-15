@@ -27,10 +27,7 @@ def prepare_tuple(cell):
 def get_color(input_tuple):
     l = input_tuple[0] % 2
     r = input_tuple[1] % 2
-    if (r and l) or (not r and not l):
-        return 0
-    else:
-        return 1
+    return ((r and l) or (not r and not l)) == 0
 
 def chessBoardCellColor(cell1, cell2):
     return get_color(prepare_tuple(cell1)) == get_color(prepare_tuple(cell2))
