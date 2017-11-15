@@ -26,12 +26,12 @@ MIN2_10 = 9
 def phoneCall(min1, min2_10, min11, s):
     if s < min1:
         return 0
-    
+
     if s == min1:
         return MIN1
-    
+
     elif s > min1 and s <= (min1 + MIN2_10 * min2_10):
         return MIN1 + (s - min1 * MIN1) / min2_10
-    
+
     else:
         return (MIN1 + MIN2_10) + (s - (MIN1 * min1 + MIN2_10 * min2_10)) / min11
