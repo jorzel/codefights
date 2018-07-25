@@ -32,26 +32,24 @@ None of the conversations have any words that match words in currentConversation
 """
 
 def chatBot(conversations, currentConversation):
-    counter = []
-    last_appear = []
-    for c in conversations:
+
+    _closest, _max, _appear_positon = None, -1, -1
+    for conversation in conversations:
         matched = 0
         unique_words = []
-        pos = []
-        la = []
-        for w in currentConversation:
-            if w in c and w not in unique_words:
+        _last_appear = -1
+        for word in currentConversation:
+            if word in conversation and word not in unique_words:
                 matched += 1
-                unique_words.append(w)
-                ind = c.index(w)
-                pos.append(ind)
-                la.append(ind)
-        counter.append(matched)
-        last_appear.append(max(la) if la else 'x')
-    conv_ind = counter.index(max(counter))
-
-    close_conv = conversations[conv_ind]
-    if last_appear[conv_ind] != 'x':
-        for i in xrange(last_appear[conv_ind] + 1, len(close_conv)):
-            currentConversation.append(close_conv[i])
+                unique_words.append(word)
+                position = max([i for i, w in enumerate(conversation) if w == word])
+                if position > _last_appear:
+                    _last_appear = position
+        if matched > _max:
+            _max = matched
+            _closest = conversation
+            _appear_position = _last_appear
+    if _appear_position != -1:
+        for i in xrange(_appear_position + 1, len(_closest)):
+            currentConversation.append(_closest[i])
     return currentConversation
