@@ -15,7 +15,6 @@ For size = 7, the output should be
 constructArray(size) = [1, 7, 2, 6, 3, 5, 4].
 
 
-
 """
 
 
